@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Zef School — онлайн школа англійської мови. Навчання з нуля до рівня C1.">
+    <title>Zef School — Онлайн школа англійської</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #2d7a4f;
+            --green-light: #3fa06a;
+            --green-pale: #e8f5ee;
+            --green-mid: #c3e8d4;
+            --white: #ffffff;
+            --grey-light: #f5f7f5;
+            --grey: #e0e6e2;
+            --text: #1a2e22;
+            --text-muted: #5a7a67;
+            --accent: #f0a500;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--text);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--grey);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .logo span { color: var(--accent); }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--green); }
+
+        .nav-btn {
+            background: var(--green);
+            color: white !important;
+            padding: 10px 24px;
+            border-radius: 8px;
+            transition: background 0.2s !important;
+        }
+
+        .nav-btn:hover { background: var(--green-light) !important; color: white !important; }
+
+        .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+        .burger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--green-pale) 0%, #d4f0e2 50%, var(--white) 100%);
+            display: flex;
+            align-items: center;
+            padding: 100px 40px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px; right: -100px;
+            width: 500px; height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(45,122,79,0.1) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--green);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 5vw, 60px);
+            line-height: 1.15;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span { color: var(--green); }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 36px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-primary:hover { background: var(--green-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(45,122,79,0.3); }
+
+        .btn-outline {
+            border: 2px solid var(--green);
+            color: var(--green);
+            padding: 12px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+
+        .btn-outline:hover { background: var(--green-pale); transform: translateY(-2px); }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .stat { text-align: center; }
+        .stat-num { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--green); font-weight: 700; }
+        .stat-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(45,122,79,0.15);
+            width: 100%;
+            max-width: 380px;
+            border: 1px solid var(--green-mid);
+        }
+
+        .hero-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+
+        .lesson-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--grey-light);
+        }
+
+        .lesson-item:last-child { border-bottom: none; }
+
+        .lesson-icon {
+            width: 40px; height: 40px;
+            background: var(--green-pale);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .lesson-info { flex: 1; }
+        .lesson-name { font-size: 14px; font-weight: 600; color: var(--text); }
+        .lesson-level { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+        .lesson-tag {
+            background: var(--green-pale);
+            color: var(--green);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* SECTION */
+        section { padding: 100px 40px; }
+
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+
+        .section-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 4vw, 44px);
+            color: var(--text);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .section-sub {
+            font-size: 17px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 560px;
+        }
+
+        /* ABOUT */
+        #about { background: var(--grey-light); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-features { margin-top: 40px; display: flex; flex-direction: column; gap: 20px; }
+
+        .feature {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            width: 48px; height: 48px;
+            background: var(--green);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+        .feature-text p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+        .about-visual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .about-block {
+            background: white;
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            border: 1px solid var(--green-mid);
+            transition: transform 0.2s;
+        }
+
+        .about-block:hover { transform: translateY(-4px); }
+        .about-block:first-child { grid-column: span 2; background: var(--green); color: white; }
+        .about-block-num { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 700; color: var(--green); }
+        .about-block:first-child .about-block-num { color: white; }
+        .about-block-label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+        .about-block:first-child .about-block-label { color: rgba(255,255,255,0.8); }
+
+        /* COURSES */
+        #courses { background: white; }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .course-card {
+            border: 1px solid var(--grey);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .course-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(45,122,79,0.12); border-color: var(--green-mid); }
+
+        .course-card.featured { border-color: var(--green); position: relative; }
+
+        .course-badge {
+            position: absolute;
+            top: 16px; right: 16px;
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .course-header {
+            padding: 28px 28px 20px;
+            background: var(--green-pale);
+        }
+
+        .course-icon { font-size: 36px; margin-bottom: 12px; }
+        .course-level { font-size: 12px; color: var(--green); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .course-name { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--text); }
+
+        .course-body { padding: 24px 28px 28px; }
+
+        .course-features { list-style: none; margin-bottom: 24px; }
+        .course-features li {
+            font-size: 14px;
+            color: var(--text-muted);
+            padding: 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .course-features li::before { content: '✓'; color: var(--green); font-weight: 700; }
+
+        .course-price { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--text); margin-bottom: 4px; }
+        .course-price span { font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-muted); font-weight: 400; }
+        .course-cta {
+            display: block;
+            text-align: center;
+            background: var(--green);
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: background 0.2s;
+        }
+        .course-cta:hover { background: var(--green-light); }
+
+        /* TEACHERS */
+        #teachers { background: var(--grey-light); }
+
+        .teachers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-top: 48px;
+        }
+
+        .teacher-card {
+            background: white;
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            border: 1px solid var(--grey);
+            transition: all 0.3s;
+        }
+
+        .teacher-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(45,122,79,0.1); }
+
+        .teacher-avatar {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: var(--green);
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            border: 3px solid var(--green-mid);
+        }
+
+        .teacher-name { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 6px; }
+        .teacher-spec { font-size: 13px; color: var(--green); font-weight: 600; margin-bottom: 12px; }
+        .teacher-desc { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+
+        /* REVIEWS */
+        #reviews { background: white; }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .review-card {
+            background: var(--green-pale);
+            border-radius: 16px;
+            padding: 28px;
+            border: 1px solid var(--green-mid);
+        }
+
+        .review-stars { color: var(--accent); font-size: 18px; margin-bottom: 12px; }
+        .review-text { font-size: 15px; color: var(--text); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+        .review-author { display: flex; align-items: center; gap: 12px; }
+        .review-avatar {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            background: var(--green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+            font-weight: 700;
+        }
+        .review-name { font-weight: 600; font-size: 15px; }
+        .review-level { font-size: 12px; color: var(--text-muted); }
+
+        /* FAQ */
+        #faq { background: var(--grey-light); }
+
+        .faq-list { margin-top: 48px; max-width: 720px; }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid var(--grey);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+
+        .faq-question:hover { background: var(--green-pale); }
+
+        .faq-arrow {
+            font-size: 20px;
+            color: var(--green);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.open .faq-arrow { transform: rotate(45deg); }
+
+        .faq-answer {
+            display: none;
+            padding: 0 24px 20px;
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .faq-item.open .faq-answer { display: block; }
+
+        /* BLOG */
+        #blog { background: white; }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .blog-card {
+            border: 1px solid var(--grey);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .blog-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(45,122,79,0.1); }
+
+        .blog-img {
+            height: 160px;
+            background: var(--green-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .blog-body { padding: 24px; }
+        .blog-tag { font-size: 12px; color: var(--green); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+        .blog-title { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 10px; line-height: 1.4; }
+        .blog-excerpt { font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px; }
+        .blog-link { font-size: 14px; color: var(--green); font-weight: 600; text-decoration: none; }
+        .blog-link:hover { text-decoration: underline; }
+
+        /* CONTACT */
+        #contact { background: var(--green); }
+
+        #contact .section-label { color: rgba(255,255,255,0.6); }
+        #contact .section-title { color: white; }
+        #contact .section-sub { color: rgba(255,255,255,0.8); }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            margin-top: 48px;
+            align-items: start;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+        .form-group label { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.8); }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: rgba(255,255,255,0.5); }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus { border-color: rgba(255,255,255,0.6); }
+
+        .form-group select option { background: var(--green); }
+
+        .btn-white {
+            background: white;
+            color: var(--green);
+            padding: 14px 32px;
+            border-radius: 10px;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-white:hover { background: var(--green-pale); transform: translateY(-2px); }
+
+        .contact-info { color: white; }
+        .contact-info h3 { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 24px; }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .contact-item-icon {
+            width: 48px; height: 48px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .contact-item-text { font-size: 15px; color: rgba(255,255,255,0.85); }
+        .contact-item-label { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 2px; }
+
+        /* FOOTER */
+        footer {
+            background: var(--text);
+            color: rgba(255,255,255,0.6);
+            padding: 40px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        footer .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        footer span { color: var(--accent); }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            nav { padding: 0 20px; }
+            .nav-links { display: none; }
+            .burger { display: flex; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 70px; left: 0; right: 0;
+                background: white;
+                padding: 20px;
+                border-bottom: 1px solid var(--grey);
+                gap: 16px;
+            }
+
+            section { padding: 60px 20px; }
+            .hero { padding: 100px 20px 60px; }
+            .hero-content { grid-template-columns: 1fr; gap: 40px; }
+            .hero-visual { display: none; }
+            .hero-stats { gap: 20px; }
+
+            .about-grid,
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+
+            .about-visual { grid-template-columns: 1fr 1fr; }
+            .about-block:first-child { grid-column: span 2; }
+
+            .courses-grid,
+            .teachers-grid,
+            .reviews-grid,
+            .blog-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+    <a href="#" class="logo">Zef <span>School</span></a>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#about">Про нас</a></li>
+        <li><a href="#courses">Курси</a></li>
+        <li><a href="#reviews">Відгуки</a></li>
+        <li><a href="#blog">Блог</a></li>
+        <li><a href="#contact" class="nav-btn">Записатись</a></li>
+    </ul>
+    <div class="burger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <div>
+            <div class="hero-badge">🎓 Онлайн навчання</div>
+            <h1>Вивчай англійську <span>легко та ефективно</span></h1>
+            <p>Zef School — це сучасна онлайн школа англійської мови. Індивідуальний підхід, досвідчені вчителі та результат вже після першого місяця.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn-primary">Записатись на урок</a>
+                <a href="#courses" class="btn-outline">Переглянути курси</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-num">500+</div>
+                    <div class="stat-label">Учнів навчились</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">4.9</div>
+                    <div class="stat-label">Рейтинг школи</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">3+</div>
+                    <div class="stat-label">Роки досвіду</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-card">
+                <div class="hero-card-title">Наші курси</div>
+                <div class="lesson-item">
+                    <div class="lesson-icon">🔤</div>
+                    <div class="lesson-info">
+                        <div class="lesson-name">Англійська з нуля</div>
+                        <div class="lesson-level">Рівень A1–A2</div>
+                    </div>
+                    <div class="lesson-tag">Популярний</div>
+                </div>
+                <div class="lesson-item">
+                    <div class="lesson-icon">💬</div>
+                    <div class="lesson-info">
+                        <div class="lesson-name">Розмовна англійська</div>
+                        <div class="lesson-level">Рівень B1–B2</div>
+                    </div>
+                    <div class="lesson-tag">Топ</div>
+                </div>
+                <div class="lesson-item">
+                    <div class="lesson-icon">💼</div>
+                    <div class="lesson-info">
+                        <div class="lesson-name">Бізнес англійська</div>
+                        <div class="lesson-level">Рівень B2–C1</div>
+                    </div>
+                    <div class="lesson-tag">Новий</div>
+                </div>
+                <div class="lesson-item">
+                    <div class="lesson-icon">📝</div>
+                    <div class="lesson-info">
+                        <div class="lesson-name">Підготовка до IELTS</div>
+                        <div class="lesson-level">Рівень B2–C1</div>
+                    </div>
+                    <div class="lesson-tag">Хіт</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="section-inner">
+        <div class="about-grid">
+            <div>
+                <div class="section-label">Про нас</div>
+                <h2 class="section-title">Чому обирають Zef School?</h2>
+                <p class="section-sub">Ми не просто вчимо граматику — ми вчимо говорити, думати та жити англійською.</p>
+                <div class="about-features">
+                    <div class="feature">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-text">
+                            <h4>Індивідуальний підхід</h4>
+                            <p>Кожен учень отримує персональну програму навчання під свої цілі та рівень.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">👩‍🏫</div>
+                        <div class="feature-text">
+                            <h4>Досвідчені вчителі</h4>
+                            <p>Всі викладачі мають сертифікати CELTA/DELTA та багаторічний досвід.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">📱</div>
+                        <div class="feature-text">
+                            <h4>Зручний формат</h4>
+                            <p>Навчайся з будь-якого місця — вдома, в кафе або на роботі.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="about-block">
+                    <div class="about-block-num">500+</div>
+                    <div class="about-block-label">Задоволених учнів</div>
+                </div>
+                <div class="about-block">
+                    <div class="about-block-num">4</div>
+                    <div class="about-block-label">Курси</div>
+                </div>
+                <div class="about-block">
+                    <div class="about-block-num">3</div>
+                    <div class="about-block-label">Вчителі</div>
+                </div>
+                <div class="about-block">
+                    <div class="about-block-num">98%</div>
+                    <div class="about-block-label">Досягають мети</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+    <div class="section-inner">
+        <div class="section-label">Курси та ціни</div>
+        <h2 class="section-title">Обери свій курс</h2>
+        <p class="section-sub">Від початківця до впевненого носія — у нас є програма для кожного рівня.</p>
+        <div class="courses-grid">
+            <div class="course-card">
+                <div class="course-header">
+                    <div class="course-icon">🔤</div>
+                    <div class="course-level">A1 — A2</div>
+                    <div class="course-name">Англійська з нуля</div>
+                </div>
+                <div class="course-body">
+                    <ul class="course-features">
+                        <li>Алфавіт, базова граматика</li>
+                        <li>Розмовні фрази для початківців</li>
+                        <li>2 уроки на тиждень</li>
+                        <li>Домашні завдання</li>
+                    </ul>
+                    <div class="course-price">500 грн <span>/ урок</span></div>
+                    <a href="#contact" class="course-cta">Записатись</a>
+                </div>
+            </div>
+            <div class="course-card featured">
+                <div class="course-badge">⭐ Популярний</div>
+                <div class="course-header">
+                    <div class="course-icon">💬</div>
+                    <div class="course-level">B1 — B2</div>
+                    <div class="course-name">Розмовна англійська</div>
+                </div>
+                <div class="course-body">
+                    <ul class="course-features">
+                        <li>Активна розмовна практика</li>
+                        <li>Реальні діалоги та ситуації</li>
+                        <li>3 уроки на тиждень</li>
+                        <li>Відеозаписи уроків</li>
+                        <li>Чат підтримки</li>
+                    </ul>
+                    <div class="course-price">600 грн <span>/ урок</span></div>
+                    <a href="#contact" class="course-cta">Записатись</a>
+                </div>
+            </div>
+            <div class="course-card">
+                <div class="course-header">
+                    <div class="course-icon">💼</div>
+                    <div class="course-level">B2 — C1</div>
+                    <div class="course-name">Бізнес англійська</div>
+                </div>
+                <div class="course-body">
+                    <ul class="course-features">
+                        <li>Ділова переписка та переговори</li>
+                        <li>Презентації англійською</li>
+                        <li>2-3 уроки на тиждень</li>
+                        <li>Бізнес матеріали</li>
+                    </ul>
+                    <div class="course-price">700 грн <span>/ урок</span></div>
+                    <a href="#contact" class="course-cta">Записатись</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- REVIEWS -->
+<section id="reviews">
+    <div class="section-inner">
+        <div class="section-label">Відгуки</div>
+        <h2 class="section-title">Що кажуть наші учні</h2>
+        <p class="section-sub">Понад 500 учнів вже досягли своєї мети разом з нами.</p>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">"За 3 місяці я пройшла від A1 до B1. Анна — неймовірний вчитель, все пояснює дуже зрозуміло. Рекомендую всім!"</div>
+                <div class="review-author">
+                    <div class="review-avatar">М</div>
+                    <div>
+                        <div class="review-name">Марія Савченко</div>
+                        <div class="review-level">A1 → B1 за 3 місяці</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">"Нарешті знайшов школу де вчать реально говорити а не просто заучувати правила. Вже провів переговори з американськими партнерами!"</div>
+                <div class="review-author">
+                    <div class="review-avatar">Д</div>
+                    <div>
+                        <div class="review-name">Дмитро Кравець</div>
+                        <div class="review-level">Бізнес англійська</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <div class="review-text">"Склала IELTS на 7.5 завдяки Олені! Готувалась 4 місяці, дуже структурований підхід та багато практики."</div>
+                <div class="review-author">
+                    <div class="review-avatar">С</div>
+                    <div>
+                        <div class="review-name">Софія Петренко</div>
+                        <div class="review-level">IELTS 7.5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+    <div class="section-inner">
+        <div class="section-label">Питання та відповіді</div>
+        <h2 class="section-title">Часті запитання</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Як проходять уроки? <span class="faq-arrow">+</span>
+                </div>
+                <div class="faq-answer">Уроки проходять онлайн через Zoom або Google Meet. Тривалість — 60 хвилин. Ви отримуєте посилання на урок заздалегідь.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Чи є пробний урок? <span class="faq-arrow">+</span>
+                </div>
+                <div class="faq-answer">Так! Перший пробний урок безкоштовний. На ньому ми визначаємо ваш рівень і підбираємо оптимальну програму.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Скільки часу потрібно для результату? <span class="faq-arrow">+</span>
+                </div>
+                <div class="faq-answer">Перші результати помітні вже після 1 місяця занять. Для переходу на наступний рівень зазвичай потрібно 3-6 місяців при 2-3 уроках на тиждень.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Що якщо пропущу урок? <span class="faq-arrow">+</span>
+                </div>
+                <div class="faq-answer">Урок можна перенести якщо попередити за 24 години. Всі уроки записуються і ви можете переглянути запис у будь-який час.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Як оплатити? <span class="faq-arrow">+</span>
+                </div>
+                <div class="faq-answer">Оплата через Monobank, ПриватБанк або картою онлайн. Можна купити пакет уроків зі знижкою або оплачувати кожен урок окремо.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+    <div class="section-inner">
+        <div class="section-label">Блог</div>
+        <h2 class="section-title">Корисні статті</h2>
+        <p class="section-sub">Поради, лайфхаки та цікаві факти про вивчення англійської.</p>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-img">📚</div>
+                <div class="blog-body">
+                    <div class="blog-tag">Поради</div>
+                    <div class="blog-title">10 способів вчити нові слова швидше</div>
+                    <div class="blog-excerpt">Ефективні техніки запам'ятовування словникового запасу які справді працюють.</div>
+                    <a href="#" class="blog-link">Читати →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-img">🎬</div>
+                <div class="blog-body">
+                    <div class="blog-tag">Ресурси</div>
+                    <div class="blog-title">Найкращі серіали для вивчення англійської</div>
+                    <div class="blog-excerpt">Список серіалів з субтитрами які допоможуть покращити розуміння на слух.</div>
+                    <a href="#" class="blog-link">Читати →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-img">✈️</div>
+                <div class="blog-body">
+                    <div class="blog-tag">IELTS</div>
+                    <div class="blog-title">Як підготуватись до IELTS за 3 місяці</div>
+                    <div class="blog-excerpt">Покроковий план підготовки до міжнародного іспиту з реальними порадами.</div>
+                    <a href="#" class="blog-link">Читати →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="section-inner">
+        <div class="section-label">Контакти</div>
+        <h2 class="section-title">Запишись на безкоштовний урок</h2>
+        <p class="section-sub">Залиш заявку і ми зв'яжемось з тобою протягом години.</p>
+        <div class="contact-grid">
+           <form class="contact-form" action="https://formspree.io/f/mjglgaqy" method="POST">
+                <div class="form-group">
+                    <label>Твоє ім'я</label>
+                    <input type="text" placeholder="Введи своє ім'я" required>
+                </div>
+                <div class="form-group">
+                    <label>Номер телефону або Telegram</label>
+                    <input type="text" placeholder="+380 або @username">
+                </div>
+                <div class="form-group">
+                    <label>Який курс тебе цікавить?</label>
+                    <select>
+                        <option>Англійська з нуля (A1-A2)</option>
+                        <option>Розмовна англійська (B1-B2)</option>
+                        <option>Бізнес англійська (B2-C1)</option>
+                        <option>Підготовка до IELTS</option>
+                        <option>Не знаю — хочу консультацію</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Коментар (необов'язково)</label>
+                    <textarea rows="3" placeholder="Розкажи трохи про себе або свої цілі"></textarea>
+                </div>
+                <button type="submit" class="btn-white">Записатись безкоштовно 🎓</button>
+            </form>
+            <div class="contact-info">
+                <h3>Зв'яжись з нами</h3>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📱</div>
+                    <div>
+                        <div class="contact-item-label">Telegram / Instagram</div>
+                        <div class="contact-item-text">@zefschool</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">📧</div>
+                    <div>
+                        <div class="contact-item-label">Email</div>
+                        <div class="contact-item-text">zefschool22@gmail.com</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">🕐</div>
+                    <div>
+                        <div class="contact-item-label">Час роботи</div>
+                        <div class="contact-item-text">Пн–Сб: 9:00 — 21:00</div>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-item-icon">🌍</div>
+                    <div>
+                        <div class="contact-item-label">Формат</div>
+                        <div class="contact-item-text">100% онлайн • По всій Україні</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">Zef <span>School</span></div>
+    <p>© 2026 Zef School. Всі права захищені.</p>
+</footer>
+
+<script>
+    function toggleMenu() {
+        document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    function toggleFaq(el) {
+        const item = el.parentElement;
+        item.classList.toggle('open');
+    }
+
+    // Highlight nav on scroll
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
+        } else {
+            nav.style.boxShadow = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>
