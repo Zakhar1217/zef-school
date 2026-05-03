@@ -1022,15 +1022,15 @@
            <form class="contact-form" action="https://formspree.io/f/mjglgaqy" method="POST">
                 <div class="form-group">
                     <label>Твоє ім'я</label>
-                    <input type="text" placeholder="Введи своє ім'я" required>
+                  <input type="text" name="name" placeholder="Введи своє ім'я" required>
                 </div>
                 <div class="form-group">
                     <label>Номер телефону або Telegram</label>
-                    <input type="text" placeholder="+380 або @username">
+                  <input type="text" name="phone" placeholder="+380 або @username">
                 </div>
                 <div class="form-group">
                     <label>Який курс тебе цікавить?</label>
-                    <select>
+                   <select name="course">
                         <option>Англійська з нуля (A1-A2)</option>
                         <option>Розмовна англійська (B1-B2)</option>
                         <option>Бізнес англійська (B2-C1)</option>
@@ -1040,7 +1040,7 @@
                 </div>
                 <div class="form-group">
                     <label>Коментар (необов'язково)</label>
-                    <textarea rows="3" placeholder="Розкажи трохи про себе або свої цілі"></textarea>
+                   <textarea name="message" rows="3" placeholder="Розкажи трохи про себе або свої цілі"></textarea>
                 </div>
                 <button type="submit" class="btn-white">Записатись безкоштовно 🎓</button>
             </form>
